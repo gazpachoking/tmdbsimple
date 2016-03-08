@@ -12,7 +12,8 @@ Created by Celia Oakley on 2013-10-31.
 """
 
 import json
-import requests
+
+from . import SESSION
 
 
 class APIKeyError(Exception):
@@ -72,7 +73,7 @@ class TMDB(object):
         url = self._get_complete_url(path)
         params = self._get_params(params)
 
-        response = requests.request(
+        response = SESSION.request(
             method, url, params=params, 
             data=json.dumps(payload) if payload else payload,
             headers=self.headers)
